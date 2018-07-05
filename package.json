@@ -1,0 +1,31 @@
+{
+  "name": "newrelic-reduced",
+  "version": "0.0.1",
+  "description": "NewRelic plugin allows you to reduce costs!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build",
+    "webserver": "gulp webserver"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitryFillo/newrelic-reduced.git"
+  },
+  "author": "Dmitry Fillo <fillo@fillo.me>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/DmitryFillo/newrelic-reduced/issues"
+  },
+  "homepage": "https://github.com/DmitryFillo/newrelic-reduced#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-html-replace": "^1.6.2",
+    "gulp-rename": "^1.3.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-webserver": "^0.9.1"
+  },
+  "dependencies": {
+    "newrelic": "^4.2.1"
+  }
+}
