@@ -13,4 +13,6 @@ Self-invoking function receives `id`, `key`, `factor`, `logging` params:
   * `logging` is boolean flag allows to enable / disable logging. If enabled then you'll see "NR is enabled" message in console if NR will be enabled.
   
 ## Developing flow
-Use `npm install` then `npm run build` to build index.html with script included to <head>. You may also use `npm run webserver` to run local webserver with testing page.
+Use `npm install` then `npm run build` to build `index.html` with script included to `<head>`. You may also use `npm run webserver` to run local webserver with testing page.
+
+Check sources to get more info.
