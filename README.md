@@ -5,14 +5,12 @@ NewRelic plugin that can be disabled for some users.
 Maybe you need to reduce costs by disabling NR browser monitoring for some users. This plugin is for you.
 
 ## How to use
-Just copy-paste code from `index.js` to your head script tag. 
-Self-invoking function receives `id`, `key`, `factor`, `logging` params:
-  * `id` is your NR ID.
-  * `key` is your NR Key.
-  * `factor` is percent int value describing probability of NR enabling. E.g. value 50 means that NR will be enabled  for 50% of users. 0 < `factor` < 100.
-  * `logging` is boolean flag allows to enable / disable logging. If enabled then you'll see "NR is enabled" message in console if NR will be enabled.
-  
-## Developing flow
-Use `npm install` then `npm run build` to build `index.html` with script included to `<head>`. You may also use `npm run webserver` to run local webserver with testing page.
+Just take code from `lib/index.js`, replace variables and include into `<head></head>` at the first position.
+You need do replace for `#{NRID}`, `#{NRKey}`, `#{NRFactor}`:
+  * `#{NRID}` is your NR ID.
+  * `#{NRKey}` is your NR Key.
+  * `#{NRFactor}` is percent integer value describing probability of NR enabling. E.g. value 50 means NR will be enabled for ~50% of users. 0 < `factor` < 100.
 
-Check sources to get more info.
+In the source code you can find also `isLoggingEnabled` and `opts`:
+  * `isLoggingEnabled` is boolean flag allows to enable / disable logging. If enabled then you'll see "NR enabled" message in console every time NR is enabled.
+  * `opts` are NR opts object. Check `index.js` for more info.
