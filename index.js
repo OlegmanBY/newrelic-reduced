@@ -1,5 +1,5 @@
 !function(id, key, factor, isLoggingEnabled, opts) {
-    factor = factor ? parseInt(factor) : 100;
+    factor = parseInt(factor) || 100;
 
     // ~ uniform distribution
     var ud = function (m) { return Math.floor(Math.random() * Math.floor(m)); };
@@ -10,7 +10,7 @@
     var log = function(text) {
       try {
         console.log(text || 'NR enabled');
-      } catch (e) { }
+      } catch (e) { console.log(e); }
     };
 
     es(factor) && (isLoggingEnabled && log() || 1) && !function () {
@@ -33,4 +33,4 @@
         sa || 1
       );
   }();
-}("#{NRID}", "#{NRKey}", "#{NRFactor}", false, null);
+}("#{NRID}", "#{NRKey}", "#{NRFactor}", window.NRReducedLogging || false, null);

@@ -13,4 +13,5 @@ You need do replace for `#{NRID}`, `#{NRKey}`, `#{NRFactor}`:
 
 In the source code you can find also `isLoggingEnabled` and `opts`:
   * `isLoggingEnabled` is boolean flag allows to enable / disable logging. If enabled then you'll see "NR enabled" message in console every time NR is enabled.
+  You can also set `window.NRReducedLogging` to enable logging.
   * `opts` are NR opts object. Check `index.js` for more info.
