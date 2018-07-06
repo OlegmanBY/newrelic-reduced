@@ -33,4 +33,10 @@
         sa || 1
       );
   }();
-}("#{NRID}", "#{NRKey}", "#{NRFactor}", window.NRReducedLogging || false, null);
+}(
+  window.NRReducedID || "#{NRID}",
+  window.NRReducedKey || "#{NRKey}",
+  window.NRReducedFactor || "#{NRFactor}",
+  window.NRReducedLogging || false,
+  window.NRReducedOpts || null
+);
