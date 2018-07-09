@@ -1,12 +1,14 @@
 var gulp = require('gulp');
 var htmlreplace = require('gulp-html-replace');
-var webserver = require('gulp-webserver');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pump = require('pump');
+var connect = require("gulp-connect");
+
+var devDir = 'dev';
 
 gulp.task('build', function(cb) {
-	pump([
+	return pump([
 			gulp.src('index.js'),
 			uglify(),
 			gulp.dest('lib')
@@ -15,8 +17,8 @@ gulp.task('build', function(cb) {
 	);
 });
 
-gulp.task('build:dev', function() {
-  gulp.src('tmpl.html')
+gulp.task('dev:create-index-html', function() {
+  return gulp.src('index.html')
     .pipe(htmlreplace({
       nr: {
         src: gulp.src('index.js'),
@@ -24,14 +26,19 @@ gulp.task('build:dev', function() {
       }
     }))
     .pipe(rename('index.html'))
-    .pipe(gulp.dest('dev/'));
+    .pipe(gulp.dest(devDir + '/'))
+    .pipe(connect.reload());
 });
 
-gulp.task('webserver', function() {
-  gulp.src('dev')
-    .pipe(webserver({
-      livereload: true,
-      open: true,
-      fallback: 'index.html'
-    }));
+gulp.task('dev:watch', function() {
+  return gulp.watch('index.(js|html)', gulp.series('dev:create-index-html'));
 });
+
+gulp.task('dev:server', function () {
+  return connect.server({
+    root: './' + devDir,
+    livereload: true
+  });
+});
+
+gulp.task('dev', gulp.parallel('dev:server', 'dev:create-index-html', 'dev:watch'));

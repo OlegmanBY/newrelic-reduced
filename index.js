@@ -1,5 +1,10 @@
 !function(id, key, factor, isLoggingEnabled, opts) {
+    // params can be string as well
     factor = parseInt(factor) || 100;
+    isLoggingEnabled = isLoggingEnabled === true || isLoggingEnabled === "true";
+    try {
+      opts = JSON.parse(opts);
+    } catch (e) {}
 
     // ~ uniform distribution
     var ud = function (m) { return Math.floor(Math.random() * Math.floor(m)); };
@@ -10,7 +15,7 @@
     var log = function(text) {
       try {
         console.log(text || 'NR enabled');
-      } catch (e) { console.log(e); }
+      } catch (e) { }
     };
 
     es(factor) && (isLoggingEnabled && log() || 1) && !function () {
@@ -37,6 +42,6 @@
   window.NRReducedID || "#{NRID}",
   window.NRReducedKey || "#{NRKey}",
   window.NRReducedFactor || "#{NRFactor}",
-  window.NRReducedLogging || false,
-  window.NRReducedOpts || null
+  window.NRReducedLogging || "#{NRIsLoggingEnabled}",
+  window.NRReducedOpts || "#{NROpts}"
 );

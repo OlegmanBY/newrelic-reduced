@@ -1,28 +1,51 @@
 # newrelic-reduced
-NewRelic plugin that can be disabled for some users.
+New Relic plugin that can be disabled for some users.
+
+![New Relic](https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug.svg)
 
 ## Motivation
 Maybe you need to reduce costs by disabling NR browser monitoring for some users. This plugin is for you.
 
-## How to use #1 (replace vars and copy-paste into the head)
-Just take code from `lib/index.js`, replace variables and include into `<head></head>` at the first position.
+## How to use
+  * Define variables:
+      * `window.NRReducedID` is your NR ID.
+      * `window.NRReducedKey` is your NR Key.
+      * `window.NRReducedFactor` is percent integer value describing probability of NR enabling. E.g. value 50 means NR will be enabled for ~50% of users. 0 < `factor` < 100.
+      * `window.NRReducedLogging` is logging boolean setting. If `true` you'll see `NR enabled` message in the console when NR script is enabled.
+      * `window.NRReducedOpts` is options for original NR script. Check section *Advanced* below.
+  * Import plugin:
+      * Use CDN: `<script src="https://cdn.jsdelivr.net/npm/newrelic-reduced@x.x.x/lib/index.js"></script>` where `x.x.x` is [version](https://github.com/DmitryFillo/newrelic-reduced/releases).
+      * Use imports: `import 'newrelic-reduced'` or `require('newrelic-reduced')`.
+      * Use any other way to include it into HTML from `lib/index.js`.
 
-You need to do replace for `#{NRID}`, `#{NRKey}`, `#{NRFactor}`:
-  * `#{NRID}` is your NR ID.
-  * `#{NRKey}` is your NR Key.
-  * `#{NRFactor}` is percent integer value describing probability of NR enabling. E.g. value 50 means NR will be enabled for ~50% of users. 0 < `factor` < 100.
+NOTES:
+  * You should define variables before import!
+  * You should define NR script before any other scripts, better to place it right after `<head>`.
 
-## How to use #2 (import and set JS vars for id, key and factor)
-Just import this plugin.
-
-You need to define this variables before import:
+Define these variables before:
   * `window.NRReducedID` is your NR ID.
   * `window.NRReducedKey` is your NR Key.
   * `window.NRReducedFactor` is percent integer value describing probability of NR enabling. E.g. value 50 means NR will be enabled for ~50% of users. 0 < `factor` < 100.
+  * `window.NRReducedLogging` is logging boolean setting. If `true` you'll see `NR enabled` message in the console when NR script is enabled.
+  * `window.NRReducedOpts` is options object for original NR script. Check section *Additional options* below.
 
+### Variables substitutions
+Instead of defining global `window.NRReduced*` variables you can replace special placeholders in the source code:
+
+  * `#{NRID}` is your NR ID.
+  * `#{NRKey}` is your NR Key.
+  * `#{NRFactor}` is percent integer value describing probability of NR enabling. E.g. value 50 means NR will be enabled for ~50% of users. 0 < `factor` < 100. Can be string value, e.g. "50".
+  * `#{NRIsLoggingEnabled}` is logging boolean setting. If `true` you'll see `NR enabled` message in the console when NR script is enabled. Can be string value, e.g. "true" or "false".
+  * `#{NROpts}` is options for original NR script. Can be string value, e.g. "{ ... }". Check section *Additional options* below.
 
 ## Additional options
-In the source code you can find also `isLoggingEnabled` and `opts`:
-  * `isLoggingEnabled` is boolean flag allows to enable / disable logging. If enabled then you'll see "NR enabled" message in console every time NR is enabled.
-  You can also set `window.NRReducedLogging` to enable logging.
-  * `opts` are NR opts object. You can set `window.NRReducedOpts` to define opts. Check sources `index.js` for more info.
+It's some variables from native NR script, check the source code for more info.
+```javascript
+     window.NRReducedOpts = {
+         beacon: 'api.example.com',
+         jsAgentPath: 'example.com/nr.js',
+         errorBeacon: 'apie.example.com',
+         sa: 2
+     };
+```
+
