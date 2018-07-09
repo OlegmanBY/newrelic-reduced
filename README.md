@@ -4,7 +4,7 @@ New Relic plugin that can be disabled for some users.
 ![New Relic](https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug.svg)
 
 ## Motivation
-Maybe you need to reduce costs by disabling NR browser monitoring for some users. This plugin is for you.
+Need to reduce costs by disabling NR browser monitoring for some users? This plugin is for you.
 
 ## How to use
 Just do 2 steps:
