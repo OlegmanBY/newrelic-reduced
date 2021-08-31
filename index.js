@@ -33,7 +33,7 @@
     }(
         id,
         key,
-        nrAgentPath || 'js-agent.newrelic.com/nr-spa-1059.min.js',
+        nrAgentPath || 'js-agent.newrelic.com/nr-spa-1210.min.js',
         beacon || 'bam.nr-data.net',
         beaconError || 'bam.nr-data.net',
         sa || 1
